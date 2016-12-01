@@ -78,7 +78,7 @@ Promise.all([
   service.create({ value: 4 }, { query: {} }),
   
   service.find({ query: { name: 'John Doe' }, type: 'paginated' }),
-  service.find({ query: { name: 'Jane Doe' } }),
+  service.find({ query: { name: 'Jane Doe' } })
 ])
   .then(() => {
     console.log('\n\npending', getPending());

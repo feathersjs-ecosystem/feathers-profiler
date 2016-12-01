@@ -84,10 +84,7 @@ const hooks = require('feathers-hooks');
 const bodyParser = require('body-parser');
 const errorHandler = require('feathers-errors/handler');
 
-// import { profiler, getPending, getProfile } from 'feathers-profiler';
-const profiler = require('feathers-profiler').profiler;
-const getPending = require('feathers-profiler').getPending;
-const getProfile = require('feathers-profiler').getProfile;
+const { profiler, getPending, getProfile } = require('feathers-profiler');
 
 // Initialize the application
 const app = feathers()
@@ -101,13 +98,9 @@ const app = feathers()
   .configure(profiler({ stats: 'detail' }) // must be configured after all services
   .use(errorHandler());
   
-  // once multiple service calls have been made
-  console.log('pending', getPending());
-  console.log(require('util').inspect(getProfile(), {
-    depth: 5,
-    colors: true
-  }));
-
+// Once multiple service calls have been made
+console.log('pending', getPending());
+console.log(require('util').inspect(getProfile(), { depth: 5, colors: true }));
 ```
 
 ## License

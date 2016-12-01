@@ -82,7 +82,9 @@ function instrumentServices () {
 
         pending += -1;
 
-        options.logger && options.logger.log(options.logMsg(hook));
+        if (options.logger) {
+          options.logger.log(options.logMsg(hook));
+        }
       }
     }
   });
@@ -92,7 +94,7 @@ export function timeStart (hook) {
   const route = hook.path; // feathers-hooks v1.7.0 required
   let key = '';
 
-  debug(`timeStart ${route} ${hook.method} ${hook.params.provider || 'server'}`);
+  debug(`timeStart ${route} ${hook.method} ${hook.params.provider}`);
 
   if (options.stats !== 'none') {
     cache[route] = cache[route] || {};
@@ -122,7 +124,7 @@ export function timeStart (hook) {
 export function timeEnd (hook) {
   const diff = process.hrtime(hook._log.hrtime);
   pending += -1;
-  debug(`timeEnd ${hook._log.route} ${hook.method} ${hook.params.provider || 'server'}`);
+  debug(`timeEnd ${hook._log.route} ${hook.method} ${hook.params.provider}`);
 
   hook._log.elapsed = diff[0] * 1e9 + diff[1];
 
@@ -142,7 +144,9 @@ export function timeEnd (hook) {
     }
   }
 
-  options.logger && options.logger.log(options.logMsg(hook));
+  if (options.logger) {
+    options.logger.log(options.logMsg(hook));
+  }
 }
 
 export function getProfile () {
