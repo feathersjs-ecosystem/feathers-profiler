@@ -1,7 +1,7 @@
 {
   "name": "feathers-profiler",
   "description": "Log feathers service calls and gather profile information on them.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/feathersjs/feathers-profiler",
   "main": "lib/",
   "keywords": [
