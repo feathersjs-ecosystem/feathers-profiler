@@ -6,7 +6,7 @@
 [![Dependency Status](https://img.shields.io/david/feathersjs/feathers-profiler.svg?style=flat-square)](https://david-dm.org/feathersjs/feathers-profiler)
 [![Download Status](https://img.shields.io/npm/dm/feathers-profiler.svg?style=flat-square)](https://www.npmjs.com/package/feathers-profiler)
 
-> Log service method calls and gather performance stats on them.
+> Log service method calls and gather profile information on them.
 
 ### Logs service calls
 
@@ -17,11 +17,11 @@ The log message may be customized. The default log message includes:
 - Number of service calls pending when call was made.
 - Where service call failed and why.
 
-![logs](./docs/log.jpg)
+![logs](./docs/profiler-log.jpg)
 
-### Gathers performance stats on service calls
+### Gathers profile information on service calls
 
-Performance statistics are:
+Profile information is:
 
 - Grouped by service and method.
 - Grouped by characteristics of the call. These may be customized.
@@ -29,7 +29,7 @@ Performance statistics are:
 - Average, min and max elapsed time provide information on how responsive the server is.
 - The number of returned items provides information on how large the `find` results were.
 
-![stats](./docs/stats.jpg)
+![stats](./docs/profiler-stats.jpg)
 
 ## Installation
 
