@@ -100,7 +100,7 @@ export function timeStart (hook) {
     cache[route] = cache[route] || {};
     cache[route][hook.method] = cache[route][hook.method] || {};
 
-    key = options.stats === 'detail' ? (options.statsDetail(hook) || '_misc') : '_total';
+    key = getKey(options);
 
     const routeMethod = cache[route][hook.method];
     routeMethod[key] = routeMethod[key] || Object.assign({}, cacheEntry);
@@ -119,6 +119,10 @@ export function timeStart (hook) {
   hook._log.hrtime = process.hrtime(); // V8 bug: breaks if inside the above object literal
 
   return hook;
+
+  function getKey (options) { // to reduce complexity for code climate
+    return options.stats === 'detail' ? (options.statsDetail(hook) || '_misc') : '_total';
+  }
 }
 
 export function timeEnd (hook) {
@@ -138,14 +142,18 @@ export function timeEnd (hook) {
     entry.nanoMax = Math.max(entry.nanoMax, nano);
 
     if (hook.method === 'find' || hook.method === 'get') {
-      const result = hook.result;
-      const items = result ? result.data || result : result;
+      const items = getItems(hook);
       entry.resultItemsCount += Array.isArray(items) ? items.length : 1;
     }
   }
 
   if (options.logger) {
     options.logger.log(options.logMsg(hook));
+  }
+
+  function getItems (hook) { // to reduce complexity for code climate
+    const result = hook.result;
+    return result ? result.data || result : result;
   }
 }
 
