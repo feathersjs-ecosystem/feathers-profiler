@@ -77,7 +77,7 @@ function instrumentServices () {
 
         if (hook._log.hrtime !== 0) {
           const diff = process.hrtime(hook._log.hrtime || [0, 0]);
-          hook._log.elapsed = diff[0] * 1e9 + diff[1];
+          hook._log.elapsed = (diff[0] * 1e9) + diff[1];
         }
 
         pending += -1;
@@ -130,7 +130,7 @@ export function timeEnd (hook) {
   pending += -1;
   debug(`timeEnd ${hook._log.route} ${hook.method} ${hook.params.provider}`);
 
-  hook._log.elapsed = diff[0] * 1e9 + diff[1];
+  hook._log.elapsed = (diff[0] * 1e9) + diff[1];
 
   if (options.stats !== 'none') {
     const entry = cache[hook._log.route][hook.method][hook._log.key];
