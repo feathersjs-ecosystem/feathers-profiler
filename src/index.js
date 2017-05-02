@@ -126,6 +126,10 @@ export function timeStart (hook) {
 }
 
 export function timeEnd (hook) {
+  if (!hook._log || !hook._log.hrtime) {
+    return; // ignore RethinkDB change-feed
+  }
+
   const diff = process.hrtime(hook._log.hrtime);
   pending += -1;
   debug(`timeEnd ${hook._log.route} ${hook.method} ${hook.params.provider}`);
