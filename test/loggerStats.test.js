@@ -1,3 +1,4 @@
+require('babel-polyfill');
 
 const feathers = require('feathers');
 const hooks = require('feathers-hooks');
